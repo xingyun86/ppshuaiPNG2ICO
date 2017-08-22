@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IconConvTool", "IconConvToo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebkitsBrowser", "WebkitsBrowser\WebkitsBrowser.vcxproj", "{22F0284E-A6BE-4496-A859-E1FFEB587B36}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebGames", "WebGames\WebGames.vcxproj", "{A643DB4B-C577-48B9-9387-58859E682714}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -23,6 +25,10 @@ Global
 		{22F0284E-A6BE-4496-A859-E1FFEB587B36}.Debug|Win32.Build.0 = Debug|Win32
 		{22F0284E-A6BE-4496-A859-E1FFEB587B36}.Release|Win32.ActiveCfg = Release|Win32
 		{22F0284E-A6BE-4496-A859-E1FFEB587B36}.Release|Win32.Build.0 = Release|Win32
+		{A643DB4B-C577-48B9-9387-58859E682714}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A643DB4B-C577-48B9-9387-58859E682714}.Debug|Win32.Build.0 = Debug|Win32
+		{A643DB4B-C577-48B9-9387-58859E682714}.Release|Win32.ActiveCfg = Release|Win32
+		{A643DB4B-C577-48B9-9387-58859E682714}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
