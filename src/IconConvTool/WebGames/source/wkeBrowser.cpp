@@ -202,6 +202,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	HANDLE m_hMutex = NULL;
+
 	{
 		// ´´½¨»¥³âÁ¿
 		m_hMutex = CreateMutex(NULL, FALSE, _T("__PNG2ICO__MUTEX__"));
@@ -223,6 +224,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 		//StartAppProg(_T("INSTALL_REG.BAT"));
 	}
+	TSTRINGTSTRINGMAP ttmap;
+	_TCHAR tRootPath[MAX_PATH] = { 0 };
+	GetProgramDir(tRootPath);
 
 	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(hInstance, IDC_WKEBROWSER, szWindowClass, MAX_LOADSTRING);
@@ -252,8 +256,16 @@ int APIENTRY WinMain(HINSTANCE hInstance,
     g_webView->setClientHandler(&handler);
     
 	t3.Start();
+
+	ListFolder(ttmap, TSTRING(TSTRING(tRootPath) + _T("\\graphs\\games")).c_str());
+	if (ttmap.size())
+	{
+		WCHAR wUrl[L_MAX_URL_LENGTH + 1] = { 0 };
+		_snwprintf(wUrl, L_MAX_URL_LENGTH, _T("http://localhost:58888/games/%s/index.html\x00"), ttmap.begin()->second.c_str());
+		g_webView->loadURL((const utf8 *)UnicodeToUTF8(wUrl).c_str());
+	}
 	//http://localhost:58888/ConvIconTool.html
-	g_webView->loadURL((const utf8 *)UnicodeToUTF8(L"http://localhost:58888/games/ConvertIcon/index.html\x00").c_str());
+	//g_webView->loadURL((const utf8 *)UnicodeToUTF8(L"http://localhost:58888/games/ConvertIcon/index.html\x00").c_str());
 	//g_webView->loadFile(L"html/mac-osx-lion.html");
     //g_webView->loadHTML((const WCHAR *)L"<p style=\"background-color: #00FF00\">Testing</p><img id=\"webkit logo\" src=\"http://webkit.org/images/icon-gold.png\" alt=\"Face\"><div style=\"border: solid blue; background: white;\" contenteditable=\"true\">div with blue border</div><ul><li>foo<li>bar<li>baz</ul>");
     
@@ -281,8 +293,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		    0,
 		    hInstance, 0);
 	
-	_TCHAR tRootPath[MAX_PATH] = { 0 };
-	GetProgramDir(tRootPath);
 	InitComboxList(hWndComboBox, TSTRING(TSTRING(tRootPath) + _T("\\graphs\\games")).c_str());
 	DefComboBoxProc = reinterpret_cast<WNDPROC>(GetWindowLongPtr(hWndComboBox, GWL_WNDPROC));
 	SetWindowLongPtr(hWndComboBox, GWL_WNDPROC, reinterpret_cast<LONG_PTR>(ComboBoxProc));
